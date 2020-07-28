@@ -1,0 +1,97 @@
+Approach : two for loops
+
+		    
+		     int count = 0;
+        
+            for(int i=0;i<nums.length-1 ;i++){
+            
+                 for(int j=i+1; j<nums.length ; j++){
+                     if( nums[i] + nums[j] == target ){
+                             count++;
+                             
+                        }
+                 }
+            
+            
+            }
+        
+            System.out.println(count);
+            
+		    
+	Approach : one way hashmap   O(n)
+  
+  
+        HashMap<Integer,Integer> hm = new HashMap<>();
+		     
+		     for (int i=0; i<n; i++){ 
+              
+                // initializing value to 0, if key not found 
+                if(!hm.containsKey(nums[i])) 
+                    hm.put(nums[i],1); 
+                  
+                else hm.put(nums[i], hm.get(nums[i])+1); 
+            } 
+            
+            int twice_count = 0; 
+  
+            // iterate through each element and increment the 
+            // count (Notice that every pair is counted twice) 
+            
+            for (int i=0; i<n; i++) 
+            { 
+                if(hm.get(sum-nums[i]) != null) 
+                    twice_count += hm.get(sum-nums[i]); 
+                    
+      
+                // if (arr[i], arr[i]) pair satisfies the condition, 
+                // then we need to ensure that the count is 
+                // decreased by one such that the (arr[i], arr[i]) 
+                // pair is not considered 
+                if (sum-nums[i] == nums[i]) 
+                    twice_count--; 
+            } 
+      
+            // return the half of twice_count 
+            System.out.println(twice_count/2 );
+            
+            
+    Approach 3 : Sorting O(n log n)
+    
+         Arrays.sort(nums);
+		     int count =0;
+		     int i = 0 ;int j = n-1;
+		     
+		     while(i<j){
+		         
+		            if(nums[i] + nums[j] == sum){
+		             
+                		             // Find the frequency of arr[i] 
+                            int x = nums[i], xx = i; 
+                            while (i < j && nums[i] == x) 
+                                i++; // 1 1 1 1  
+                                     //       i
+                  
+                            // Find the frequency of arr[j] 
+                            int y = nums[j], yy = j; 
+                            while (j >= i && nums[j] == y) 
+                                j--; // 1 1 1 1  
+                                     //       j
+                  
+                            // If arr[i] and arr[j] are same 
+                            // then remove the extra number counted 
+                            if (x == y) { 
+                                int temp = i - xx + yy - j - 1; 
+                               // System.out.println(temp+" ll");
+                                count += (temp * (temp + 1)) / 2; 
+                            } 
+                            else
+                                count += (i - xx) * (yy - j); 
+                    
+		         }
+		         
+		         else if(nums[i] + nums[j] > sum) j--;
+		         else i++;
+		         
+		     }
+		     
+            System.out.println(count);
