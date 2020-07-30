@@ -42,7 +42,7 @@ class Solution {
 }
 
 
- //app 2: stair case r+c
+ //app 2: stair case r+c   0ms, 40.2 MB
 
 class Solution {
     public int countNegatives(int[][] grid) {
