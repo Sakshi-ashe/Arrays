@@ -40,3 +40,38 @@ class Solution {
         
     }
 }
+
+
+ //app 2: stair case r+c
+
+class Solution {
+    public int countNegatives(int[][] grid) {
+        int cL = grid[0].length ; 
+        int rL = grid.length ;
+        
+        int r = rL-1;
+        int c = 0;
+        
+        int count = 0;
+        
+       
+        while(r>=0 && c<cL){
+            
+            if(grid[r][c] >= 0){
+                c++;
+            }
+            else{
+                r--;
+                count += cL-c;
+            }
+        }
+        
+        
+        return count;
+        
+    }
+
+}
+    
+    
+   
