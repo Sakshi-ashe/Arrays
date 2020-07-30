@@ -1,0 +1,50 @@
+locating the immediate minimum on the right side , usng stack 
+
+class Solution {
+    public int[] finalPrices(int[] prices) {
+        
+        //[8,4,6,2,3]
+        // stack  = [0,1,2,3,4]
+        
+        //push indexof(8)
+        // stack = [0]
+       // if a[0] > [0+1]  then immediate smaller found ; finalPrice[i] = a[i] - a[i+1]
+        // nw no use of 8 so pop 8 
+        
+        //push indexof4
+        // stack = [1]
+        // if a[i] < a[i+1] then currently no smaller value found so just keep it, i.e. 4
+        // finalPrice[i] = a[i]
+        
+        
+        // push iO6
+        //stack = [1,2]
+        // 6 > 2 so pop 2
+        // 4 > 2 so pop 1
+        
+        //push iO2
+        //stck = [3]
+        // 2 < 3 keep 3
+        
+        //push iO3
+        //stack = [3,4]
+        // 3 ><= nothng ahead of 3 
+        
+        //nothing to push
+        
+        
+        Stack<Integer> stack = new Stack<>();
+        //stack.push(0);
+        for(int i=0;i<prices.length; i++){
+            while( !stack.isEmpty() && prices[stack.peek()] >= prices[i]   )
+            {  prices[stack.peek()] -= prices[i];
+                stack.pop();
+            }
+            
+            stack.push(i);
+        }
+        
+        return prices;
+         
+    }
+}
