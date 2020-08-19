@@ -1,0 +1,33 @@
+class Solution {
+    public void Rightrotate(int[] nums, int k) {
+        
+        int n = nums.length;
+        //lets just make only one change to left rotate code
+        k = k%n;
+        k = n - k;  // for left rotate 
+        int g_c_d = gcd(n, k);
+        for(int i=0;i<g_c_d;i++){
+            int temp = nums[i];
+            int j = i;
+            while(true){
+                int k1 = j+k;
+                if (k1 >= n)  k1 -= n;
+                nums[j] = nums[k1];
+                if(k1==i)break;
+                j = k1;
+                
+            }
+       nums[j] = temp;
+        }
+        
+        
+    }
+    
+    int gcd(int a, int b) 
+    { 
+        if (b == 0) 
+            return a; 
+        else
+            return gcd(b, a % b); 
+    } 
+}
