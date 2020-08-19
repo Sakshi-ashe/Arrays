@@ -1,0 +1,61 @@
+/*package whatever //do not write package name here */
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class GFG {
+	public static void main (String[] args) throws Exception{
+		//code
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int t = Integer.parseInt(br.readLine());
+		while(t-- != 0){
+		    int n = Integer.parseInt(br.readLine());
+		    StringTokenizer st = new StringTokenizer(br.readLine());
+		    
+		    
+		    int[] arr = new int[n];
+		    for(int i=0;i<n;i++){
+		        arr[i] = Integer.parseInt(st.nextToken());
+		    }
+		    
+		    int d = Integer.parseInt(br.readLine());
+		    d = d%n;  //###
+		    
+		    // for left rotate
+		    //  12345
+		    //  34512
+		    //  is reverse of
+		    //  21543
+		    // i.e rev(0,d-1) , rev(d,n-1) , rev(0,n-1)
+		    
+		    //for right rotate
+		    //  12345
+		    //  45123
+		    // is reverse of
+		    //  32154
+		    // i.e. rev(0,(n-d)-1) , rev(n-d, n-1) , rev(0,n-1)
+		    
+		    reverse(0,d-1,arr);
+		    reverse(d,n-1,arr);
+		    reverse(0,n-1,arr);
+		    
+		    for(int i=0;i<n;i++){
+		        System.out.print(arr[i]+" ");
+		    }
+		  System.out.println();
+		}
+		
+		
+	}
+	
+	public static void reverse(int start,int end,int[] arr){
+		    while(start<end){
+		        int temp = arr[start];
+		        arr[start] = arr[end];
+		        arr[end] = temp;
+		        start++;
+		        end--;
+		    }
+		}
+}
