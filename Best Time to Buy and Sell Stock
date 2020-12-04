@@ -1,0 +1,27 @@
+class Solution {
+    public int maxProfit(int[] prices) {
+        
+        
+        //maximum time purchase == 1
+        
+        if(prices.length == 0){return 0;}
+        
+        else{
+                int minsofar =prices[0], maxdiffsofar=0;
+
+                for(int i=1;i<prices.length;i++){
+
+                    if( prices[i] < minsofar){
+                        minsofar = prices[i];
+                    }
+
+                    if(prices[i] - minsofar > maxdiffsofar){
+                        maxdiffsofar = prices[i] - minsofar ;
+                    }
+
+                }
+
+                return maxdiffsofar;
+            }
+    }
+}
